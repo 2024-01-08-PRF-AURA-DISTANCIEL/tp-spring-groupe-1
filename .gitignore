@@ -6,6 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/.src/main/resources/application.properties
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,visualstudiocode,jetbrains
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,visualstudiocode,jetbrains

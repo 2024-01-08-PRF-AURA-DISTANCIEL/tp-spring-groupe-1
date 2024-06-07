@@ -1,45 +1,26 @@
 package fr.maboite.tp_article.spring.boot.service;
 
+
+import fr.maboite.tp_article.spring.boot.dao.ArticleDAO;
 import fr.maboite.tp_article.spring.boot.model.Article;
 import fr.maboite.tp_article.spring.boot.model.Categorie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@SpringBootTest
+@Service
 public class ArticleService {
 
     @Autowired
-    private ArticleDao articleDao;
+    private ArticleDAO articleDao;
 
-    @Autowired
-    private TypeArticleDao typeArticleDao;
-
-    @Test
-    public void testArticle() {
-        //ARRANGE
-        Article article = new Article();
-        article.setNom("Mon Article");
-
-        //ACT
-        Article saveArticle = articleDao.save(article);
-        //ASSERT
-        Assertions.assertNotNull(saveArticle);
-        Assertions.assertNotNull(saveArticle.getId());
-        Assertions.assertEquals("Mon Article", saveArticle.getName());
+    public Article createArticle(Article article) {
+        return articleDao.save(article);
     }
 
-    @Test
-    public void addTypeArticle(String typeArticle){
-        Article article = new Article();
-        article.setNom("Mon article avec type");
-
+    public Article addCategorieToArticle(Article article, String typeArticle) {
         Categorie categorie = new Categorie();
         categorie.setNom(typeArticle);
-        Categorie saveCategorie = typeArticleDao.save(categorie);
-
-        article.setCategorie(saveCategorie);
-
-        Article saveArticle = articleDao.save(article);
-
-        Assertions.assertNotNull(saveArticle.getCategorie());
+        article.setCategorie(categorie);
+        return articleDao.save(article);
     }
 }

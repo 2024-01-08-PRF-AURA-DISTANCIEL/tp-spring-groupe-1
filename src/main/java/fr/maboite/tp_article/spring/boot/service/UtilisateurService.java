@@ -2,6 +2,7 @@ package fr.maboite.tp_article.spring.boot.service;
 
 import java.util.Optional;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,12 @@ public class UtilisateurService {
     @Autowired
     private UtilisateurDAO utilisateurDAO;
 
+    @Transactional
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
         return utilisateurDAO.save(utilisateur);
     }
 
+    @Transactional
     public Utilisateur updateUtilisateur(Long id, Utilisateur utilisateur) {
         Optional<Utilisateur> optionalUtilisateur = utilisateurDAO.findById(id);
         if (optionalUtilisateur.isPresent()) {
@@ -35,6 +38,7 @@ public class UtilisateurService {
         return utilisateurDAO.findById(id);
     }
 
+    @Transactional
     public boolean deleteUtilisateur(Long id) {
         if (!utilisateurDAO.existsById(id)) {
             return false;

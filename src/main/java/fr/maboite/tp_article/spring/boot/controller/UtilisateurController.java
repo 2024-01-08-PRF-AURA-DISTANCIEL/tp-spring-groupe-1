@@ -23,12 +23,25 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
+    /**
+     * Create utilisateur response entity.
+     *
+     * @param utilisateur the utilisateur
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<Utilisateur> createUtilisateur(@RequestBody Utilisateur utilisateur) {
         Utilisateur nouveauUtilisateur = utilisateurService.createUtilisateur(utilisateur);
         return ResponseEntity.ok(nouveauUtilisateur);
     }
 
+    /**
+     * Update utilisateur response entity.
+     *
+     * @param id          the id
+     * @param utilisateur the utilisateur
+     * @return the response entity
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable Long id, @RequestBody Utilisateur utilisateur) {
         Utilisateur utilisateurModifie = utilisateurService.updateUtilisateur(id, utilisateur);
@@ -39,6 +52,12 @@ public class UtilisateurController {
         }
     }
 
+    /**
+     * Find by id response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Utilisateur> findById(@PathVariable Long id) {
         Optional<Utilisateur> utilisateur = utilisateurService.findById(id);
@@ -49,6 +68,12 @@ public class UtilisateurController {
         }
     }
 
+    /**
+     * Delete utilisateur response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUtilisateur(@PathVariable Long id) {
         boolean estSupprime = utilisateurService.deleteUtilisateur(id);
